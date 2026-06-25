@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* HDL brand: raspberry-pink primary (from the lab's letterhead mark) + a
+       trustworthy medical slate-blue secondary. */
+    --background: 0 0% 100%;
+    --foreground: 222 25% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 25% 14%;
+    --border: 220 16% 90%;
+    --input: 220 16% 88%;
+    --primary: 332 68% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 205 60% 21%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 12% 46%;
+    --accent: 332 68% 96%;
+    --accent-foreground: 332 68% 30%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 332 68% 45%;
+    --radius: 0.75rem;
+
+    /* Result-flagging semantics, used by the lab results renderer */
+    --success: 152 56% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 14%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+}
