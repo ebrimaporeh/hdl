@@ -4,8 +4,7 @@ export const ROUTES = {
   SERVICES: '/services',
   ABOUT: '/about',
   CONTACT: '/contact',
-  STAFF_LOGIN: '/admin/login',
-  CUSTOMER_LOGIN: '/portal/login',
+  LOGIN: '/login',  
 
   // Customer portal
   PORTAL_REPORTS: '/portal/reports',
@@ -22,6 +21,7 @@ export const ROUTES = {
   ADMIN_REPORTS: '/admin/reports',
   adminReportDetail: (id) => `/admin/reports/${id}`,
 }
+
 
 export const TEST_REQUEST_STATUS = {
   PENDING: 'pending',

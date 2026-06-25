@@ -27,7 +27,7 @@ export function Hero() {
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             {APP_SETTINGS.branding.tagline}
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" className="h-12">
               <Link to={ROUTES.SERVICES}>
                 Our Services

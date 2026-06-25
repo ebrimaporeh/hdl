@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from '@tanstack/react-router'
-import { Home, FlaskConical, Info, Phone, LogIn, MapPin, Mail } from 'lucide-react'
+import { Home, FlaskConical, Info, Phone, LogIn, MapPin, Mail, Clock, Shield } from 'lucide-react'
 import { BrandMark } from '@/components/custom/BrandMark'
 import { MobileBottomNav } from '@/components/custom/MobileBottomNav'
 import { Button } from '@/components/ui/button'
@@ -18,8 +18,13 @@ const MOBILE_NAV_ITEMS = [
   { to: ROUTES.SERVICES, label: 'Services', icon: FlaskConical },
   { to: ROUTES.ABOUT, label: 'About', icon: Info },
   { to: ROUTES.CONTACT, label: 'Contact', icon: Phone },
-  { to: ROUTES.CUSTOMER_LOGIN, label: 'Login', icon: LogIn },
+  { to: ROUTES.LOGIN, label: 'Login', icon: LogIn },
 ]
+
+// Footer link groups
+const FOOTER_LINKS = {
+  quickLinks: NAV_LINKS,
+}
 
 export function PublicLayout() {
   const { pathname } = useLocation()
@@ -48,11 +53,8 @@ export function PublicLayout() {
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
-            <Button asChild variant="ghost" size="sm">
-              <Link to={ROUTES.STAFF_LOGIN}>Staff Login</Link>
-            </Button>
             <Button asChild size="sm">
-              <Link to={ROUTES.CUSTOMER_LOGIN}>Customer Portal</Link>
+              <Link to={ROUTES.LOGIN}>Sign In</Link>
             </Button>
           </div>
         </div>
@@ -62,20 +64,34 @@ export function PublicLayout() {
         <Outlet />
       </main>
 
-      <footer className="no-print border-t bg-card pb-20 md:pb-0">
+      <footer className="no-print border-t bg-gradient-to-b from-card to-background">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="sm:col-span-2 lg:col-span-1">
+          {/* Main footer grid - 2 columns on mobile, 4 on desktop */}
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:gap-10">
+            {/* Brand - spans full width on mobile */}
+            <div className="col-span-2 md:col-span-1">
               <BrandMark />
-              <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">{branding.tagline}</p>
+              <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                {branding.tagline}
+              </p>
+              <div className="mt-4 flex items-center gap-1 text-xs text-muted-foreground">
+                <Shield className="h-3.5 w-3.5 text-primary" />
+                <span>Trusted since 2024</span>
+              </div>
             </div>
 
+            {/* Quick Links */}
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide">Quick Links</p>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {NAV_LINKS.map((link) => (
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Quick Links
+              </p>
+              <ul className="mt-3 space-y-2 text-sm">
+                {FOOTER_LINKS.quickLinks.map((link) => (
                   <li key={link.to}>
-                    <Link to={link.to} className="text-muted-foreground hover:text-foreground">
+                    <Link 
+                      to={link.to} 
+                      className="text-muted-foreground transition-colors hover:text-foreground hover:underline underline-offset-2"
+                    >
                       {link.label}
                     </Link>
                   </li>
@@ -83,43 +99,46 @@ export function PublicLayout() {
               </ul>
             </div>
 
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wide">Account</p>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                <li>
-                  <Link to={ROUTES.CUSTOMER_LOGIN} className="text-muted-foreground hover:text-foreground">
-                    Customer Portal
-                  </Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.STAFF_LOGIN} className="text-muted-foreground hover:text-foreground">
-                    Staff Login
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wide">Get in Touch</p>
-              <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+            {/* Contact - spans full width on mobile */}
+            <div className="col-span-2 md:col-span-1">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Contact Us
+              </p>
+              <ul className="mt-3 space-y-2.5 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2.5">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{branding.address}</span>
+                  <span className="text-xs leading-relaxed">{branding.address}</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{branding.phones.join(' / ')}</span>
+                  <span className="text-xs">{branding.phones.join(' / ')}</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{branding.email}</span>
+                  <span className="text-xs">{branding.email}</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="text-xs">Mon-Fri: 8:00 AM - 6:00 PM</span>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="mt-10 border-t pt-6 text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} {branding.legalName}. All rights reserved.
+          {/* Footer bottom bar with improved design */}
+          <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t pt-6 text-xs text-muted-foreground sm:flex-row">
+            <p>
+              &copy; {new Date().getFullYear()} {branding.legalName}. All rights reserved.
+            </p>
+            <div className="flex items-center gap-4">
+              <Link to="#" className="hover:text-foreground hover:underline underline-offset-2">
+                Privacy Policy
+              </Link>
+              <span className="text-border">|</span>
+              <Link to="#" className="hover:text-foreground hover:underline underline-offset-2">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </footer>

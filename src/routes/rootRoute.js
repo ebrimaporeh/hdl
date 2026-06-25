@@ -13,8 +13,7 @@ import { HomePage } from '@/pages/public/HomePage'
 import { ServicesPage } from '@/pages/public/ServicesPage'
 import { AboutPage } from '@/pages/public/AboutPage'
 import { ContactPage } from '@/pages/public/ContactPage'
-import { StaffLoginPage } from '@/pages/public/StaffLoginPage'
-import { CustomerLoginPage } from '@/pages/public/CustomerLoginPage'
+import { LoginPage } from '@/pages/public/LoginPage'
 
 import { MyReportsPage } from '@/pages/portal/MyReportsPage'
 import { PortalReportDetailPage } from '@/pages/portal/PortalReportDetailPage'
@@ -37,24 +36,24 @@ const rootRoute = createRootRoute()
 
 async function requireStaffAuth() {
   const session = staffSession.get()
-  if (!session) throw redirect({ to: ROUTES.STAFF_LOGIN })
+  if (!session) throw redirect({ to: ROUTES.LOGIN })
   try {
     await queryClient.fetchQuery({ queryKey: queryKeys.staffAuth.me(), queryFn: () => authApi.me(session.id) })
   } catch {
-    throw redirect({ to: ROUTES.STAFF_LOGIN })
+    throw redirect({ to: ROUTES.LOGIN })
   }
 }
 
 async function requireCustomerAuth() {
   const session = customerSession.get()
-  if (!session) throw redirect({ to: ROUTES.CUSTOMER_LOGIN })
+  if (!session) throw redirect({ to: ROUTES.LOGIN })
   try {
     await queryClient.fetchQuery({
       queryKey: queryKeys.customerAuth.me(),
       queryFn: () => customerAuthApi.me(session.id),
     })
   } catch {
-    throw redirect({ to: ROUTES.CUSTOMER_LOGIN })
+    throw redirect({ to: ROUTES.LOGIN })
   }
 }
 
@@ -66,8 +65,7 @@ const homeRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES
 const servicesRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.SERVICES, component: ServicesPage })
 const aboutRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.ABOUT, component: AboutPage })
 const contactRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.CONTACT, component: ContactPage })
-const staffLoginRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.STAFF_LOGIN, component: StaffLoginPage })
-const customerLoginRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.CUSTOMER_LOGIN, component: CustomerLoginPage })
+const loginRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.LOGIN, component: LoginPage })
 
 // ─── Customer Portal Routes ───────────────────────────────────────────────────
 
@@ -119,7 +117,7 @@ const reportDetailRoute = createRoute({
 // ─── Router ───────────────────────────────────────────────────────────────────
 
 const routeTree = rootRoute.addChildren([
-  publicLayout.addChildren([homeRoute, servicesRoute, aboutRoute, contactRoute, staffLoginRoute, customerLoginRoute]),
+  publicLayout.addChildren([homeRoute, servicesRoute, aboutRoute, contactRoute, loginRoute]),
   portalLayout.addChildren([portalReportsRoute, portalReportDetailRoute]),
   adminLayout.addChildren([
     dashboardRoute,
