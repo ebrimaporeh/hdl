@@ -40,11 +40,11 @@ export function SendReportsWidget() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
-                  className="flex items-start gap-3 rounded-lg bg-success/10 p-4"
+                  className="flex items-start gap-3 rounded-lg border border-success/20 bg-success-subtle p-4"
                 >
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-success" />
                   <div>
-                    <p className="font-medium text-success">
+                    <p className="font-semibold text-success-emphasis">
                       We&apos;ve sent {sendReports.data.reportCount}{' '}
                       {sendReports.data.reportCount === 1 ? 'report' : 'reports'} to {email}.
                     </p>
@@ -65,10 +65,10 @@ export function SendReportsWidget() {
                   exit={{ opacity: 0, y: -8 }}
                   className="space-y-3"
                 >
-                  <div className="flex items-start gap-3 rounded-lg bg-destructive/10 p-4">
+                  <div className="flex items-start gap-3 rounded-lg border border-destructive/20 bg-destructive-subtle p-4">
                     <MailWarning className="mt-0.5 h-5 w-5 shrink-0 text-destructive" />
                     <div>
-                      <p className="font-medium text-destructive">
+                      <p className="font-semibold text-destructive-emphasis">
                         We couldn&apos;t find any reports for that email address.
                       </p>
                       <p className="mt-1 text-sm text-muted-foreground">

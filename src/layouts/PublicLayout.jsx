@@ -5,6 +5,7 @@ import { MobileBottomNav } from '@/components/custom/MobileBottomNav'
 import { Button } from '@/components/ui/button'
 import { ROUTES } from '@/constants'
 import { APP_SETTINGS } from '@/settings'
+import { cn } from '@/utils/cn'
 
 const NAV_LINKS = [
   { to: ROUTES.HOME, label: 'Home' },
@@ -32,29 +33,36 @@ export function PublicLayout() {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <header className="no-print sticky top-0 z-30 border-b bg-card/95 backdrop-blur">
+      <header className="no-print sticky top-0 z-30 border-b bg-surface/80 backdrop-blur-lg">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-          <Link to={ROUTES.HOME}>
+          <Link to={ROUTES.HOME} className="rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/40">
             <BrandMark />
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                  pathname === link.to ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.to
+              return (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={cn(
+                    'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                    isActive ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                  )}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
-            <Button asChild size="sm">
+            <Button asChild variant="ghost" size="sm">
               <Link to={ROUTES.LOGIN}>Sign In</Link>
+            </Button>
+            <Button asChild size="sm">
+              <Link to={ROUTES.SERVICES}>Our Services</Link>
             </Button>
           </div>
         </div>
@@ -131,11 +139,11 @@ export function PublicLayout() {
               &copy; {new Date().getFullYear()} {branding.legalName}. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
-              <Link to="#" className="hover:text-foreground hover:underline underline-offset-2">
+              <Link to={ROUTES.PRIVACY} className="hover:text-foreground hover:underline underline-offset-2">
                 Privacy Policy
               </Link>
               <span className="text-border">|</span>
-              <Link to="#" className="hover:text-foreground hover:underline underline-offset-2">
+              <Link to={ROUTES.TERMS} className="hover:text-foreground hover:underline underline-offset-2">
                 Terms of Service
               </Link>
             </div>

@@ -7,7 +7,7 @@ export function MobileBottomNav({ items, className }) {
   return (
     <nav
       className={cn(
-        'no-print fixed inset-x-0 bottom-0 z-40 flex border-t bg-card/95 backdrop-blur md:hidden',
+        'no-print fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-surface/90 backdrop-blur-lg md:hidden',
         className,
       )}
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
@@ -20,11 +20,18 @@ export function MobileBottomNav({ items, className }) {
             key={item.to}
             to={item.to}
             className={cn(
-              'flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-xs font-medium transition-colors',
-              isActive ? 'text-primary' : 'text-muted-foreground',
+              'group relative flex flex-1 flex-col items-center justify-center gap-1 py-2 text-2xs font-semibold transition-colors',
+              isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
             )}
           >
-            <Icon className="h-5 w-5" />
+            <span
+              className={cn(
+                'flex h-8 w-12 items-center justify-center rounded-full transition-colors',
+                isActive && 'bg-accent',
+              )}
+            >
+              <Icon className="h-5 w-5" />
+            </span>
             {item.label}
           </Link>
         )

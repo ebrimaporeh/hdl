@@ -4,7 +4,9 @@ export const ROUTES = {
   SERVICES: '/services',
   ABOUT: '/about',
   CONTACT: '/contact',
-  LOGIN: '/login',  
+  PRIVACY: '/privacy',
+  TERMS: '/terms',
+  LOGIN: '/login',
 
   // Customer portal
   PORTAL_REPORTS: '/portal/reports',

@@ -12,11 +12,16 @@ export function BrandMark({ size = 'md', withText = true, className }) {
   const s = SIZES[size]
   return (
     <div className={cn('flex items-center gap-2.5', className)}>
-      <span className={cn('inline-flex items-center justify-center rounded-xl bg-primary text-primary-foreground shrink-0', s.box)}>
+      <span
+        className={cn(
+          'inline-flex shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-primary-foreground shadow-sm ring-1 ring-inset ring-white/15',
+          s.box,
+        )}
+      >
         <Microscope className={s.icon} />
       </span>
       {withText && (
-        <span className={cn('font-bold leading-tight tracking-tight', s.text)}>
+        <span className={cn('font-extrabold leading-tight tracking-tight text-foreground', s.text)}>
           {APP_SETTINGS.branding.shortName}
         </span>
       )}

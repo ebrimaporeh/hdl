@@ -2,43 +2,264 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =============================================================================
+   HDL Design System — Foundation Tokens
+   -----------------------------------------------------------------------------
+   A cohesive, enterprise-grade token set for Healthscreen Diagnostic Lab.
+   Brand: raspberry-pink primary (lab letterhead mark) + a trustworthy medical
+   slate-blue secondary. All values are HSL channels so they compose with
+   Tailwind's `hsl(var(--token) / <alpha>)` and opacity modifiers.
+   ========================================================================== */
+
 @layer base {
   :root {
-    /* HDL brand: raspberry-pink primary (from the lab's letterhead mark) + a
-       trustworthy medical slate-blue secondary. */
-    --background: 0 0% 100%;
-    --foreground: 222 25% 14%;
+    /* --- Surfaces ------------------------------------------------------- */
+    --background: 220 33% 99%;      /* app canvas — a hair off pure white   */
+    --foreground: 222 24% 13%;      /* primary text                          */
+    --surface: 0 0% 100%;           /* raised surfaces / panels              */
+    --subtle: 220 24% 97%;          /* zebra rows, inset wells               */
     --card: 0 0% 100%;
-    --card-foreground: 222 25% 14%;
-    --border: 220 16% 90%;
-    --input: 220 16% 88%;
-    --primary: 332 68% 45%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 205 60% 21%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 20% 96%;
-    --muted-foreground: 220 12% 46%;
-    --accent: 332 68% 96%;
-    --accent-foreground: 332 68% 30%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --ring: 332 68% 45%;
-    --radius: 0.75rem;
+    --card-foreground: 222 24% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 24% 13%;
 
-    /* Result-flagging semantics, used by the lab results renderer */
-    --success: 152 56% 36%;
+    /* --- Neutral text ramp --------------------------------------------- */
+    --muted: 220 24% 96%;           /* muted surface (chips, toolbars)       */
+    --muted-foreground: 220 10% 42%;/* secondary text — AA on white          */
+
+    /* --- Lines --------------------------------------------------------- */
+    --border: 220 18% 91%;          /* default hairline                      */
+    --border-strong: 220 16% 84%;   /* emphasised dividers / inputs          */
+    --input: 220 16% 86%;
+    --ring: 332 72% 46%;            /* focus ring — brand                    */
+
+    /* --- Brand: primary (raspberry) ------------------------------------ */
+    --primary: 332 72% 44%;
+    --primary-hover: 332 74% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    /* --- Brand: secondary (medical slate-blue) ------------------------- */
+    --secondary: 205 55% 21%;
+    --secondary-hover: 205 55% 17%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* --- Accent (soft brand tint — active nav, icon chips) ------------- */
+    --accent: 332 70% 96%;
+    --accent-foreground: 332 64% 34%;
+
+    /* --- Semantic / status --------------------------------------------- */
+    --success: 152 58% 34%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 38 92% 14%;
+    --success-subtle: 152 52% 95%;
+    --success-emphasis: 152 62% 26%;
+
+    --warning: 33 92% 48%;
+    --warning-foreground: 30 90% 13%;
+    --warning-subtle: 40 96% 94%;
+    --warning-emphasis: 28 80% 32%;
+
+    --destructive: 358 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-subtle: 358 80% 96%;
+    --destructive-emphasis: 358 66% 40%;
+
+    --info: 212 82% 48%;
+    --info-foreground: 0 0% 100%;
+    --info-subtle: 212 90% 96%;
+    --info-emphasis: 212 76% 38%;
+
+    /* --- Geometry ------------------------------------------------------ */
+    --radius: 0.625rem;
+
+    /* --- Elevation (layered, low-contrast shadows) --------------------- */
+    --shadow-color: 222 32% 16%;
+    --shadow-xs: 0 1px 2px 0 hsl(var(--shadow-color) / 0.05);
+    --shadow-sm: 0 1px 2px -1px hsl(var(--shadow-color) / 0.08), 0 1px 3px 0 hsl(var(--shadow-color) / 0.06);
+    --shadow-md: 0 2px 4px -2px hsl(var(--shadow-color) / 0.08), 0 4px 8px -2px hsl(var(--shadow-color) / 0.08);
+    --shadow-lg: 0 8px 16px -4px hsl(var(--shadow-color) / 0.10), 0 4px 6px -4px hsl(var(--shadow-color) / 0.08);
+    --shadow-xl: 0 16px 32px -8px hsl(var(--shadow-color) / 0.16), 0 8px 16px -8px hsl(var(--shadow-color) / 0.10);
+
+    /* --- Sidebar (admin navigation shell) ------------------------------ */
+    --sidebar: 220 30% 99%;
+    --sidebar-foreground: 222 24% 13%;
+    --sidebar-border: 220 18% 91%;
+    --sidebar-accent: 332 70% 96%;
+    --sidebar-accent-foreground: 332 64% 34%;
+    --sidebar-muted: 220 10% 46%;
+  }
+
+  .dark {
+    --background: 222 28% 8%;
+    --foreground: 220 24% 96%;
+    --surface: 222 24% 11%;
+    --subtle: 222 22% 13%;
+    --card: 222 24% 11%;
+    --card-foreground: 220 24% 96%;
+    --popover: 222 24% 11%;
+    --popover-foreground: 220 24% 96%;
+
+    --muted: 222 18% 17%;
+    --muted-foreground: 220 12% 64%;
+
+    --border: 220 14% 20%;
+    --border-strong: 220 12% 28%;
+    --input: 220 14% 24%;
+    --ring: 332 72% 56%;
+
+    --primary: 332 74% 56%;
+    --primary-hover: 332 76% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 205 40% 80%;
+    --secondary-hover: 205 40% 86%;
+    --secondary-foreground: 205 55% 14%;
+
+    --accent: 332 40% 18%;
+    --accent-foreground: 332 70% 84%;
+
+    --success: 152 52% 46%;
+    --success-subtle: 152 40% 16%;
+    --success-emphasis: 152 52% 70%;
+    --warning: 38 90% 56%;
+    --warning-subtle: 38 50% 16%;
+    --warning-emphasis: 38 90% 72%;
+    --destructive: 358 70% 58%;
+    --destructive-subtle: 358 40% 18%;
+    --destructive-emphasis: 358 80% 78%;
+    --info: 212 80% 60%;
+    --info-subtle: 212 50% 18%;
+    --info-emphasis: 212 80% 76%;
+
+    --shadow-color: 222 60% 2%;
+
+    --sidebar: 222 26% 10%;
+    --sidebar-foreground: 220 24% 96%;
+    --sidebar-border: 220 14% 18%;
+    --sidebar-accent: 332 40% 18%;
+    --sidebar-accent-foreground: 332 70% 84%;
+    --sidebar-muted: 220 12% 60%;
   }
 }
 
 @layer base {
-  * { @apply border-border; }
-  body { @apply bg-background text-foreground font-sans antialiased; }
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Tabular figures for numeric / data-dense contexts */
+  th,
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Consistent, accessible focus outline for keyboard users */
+  :focus-visible {
+    @apply outline-none;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.16);
+  }
+
+  /* Refined custom scrollbars (desktop) */
+  @media (pointer: fine) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: hsl(var(--border-strong)) transparent;
+    }
+    *::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    *::-webkit-scrollbar-thumb {
+      background-color: hsl(var(--border-strong));
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+    *::-webkit-scrollbar-thumb:hover {
+      background-color: hsl(var(--muted-foreground) / 0.6);
+    }
+  }
+}
+
+/* =============================================================================
+   Typography scale — semantic, responsive utilities
+   ========================================================================== */
+@layer components {
+  .text-display {
+    @apply text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl;
+  }
+  .text-h1 {
+    @apply text-2xl font-bold leading-tight tracking-tight sm:text-3xl;
+  }
+  .text-h2 {
+    @apply text-xl font-bold leading-tight tracking-tight sm:text-2xl;
+  }
+  .text-h3 {
+    @apply text-lg font-semibold leading-snug tracking-tight;
+  }
+  .text-subheading {
+    @apply text-base font-semibold leading-snug;
+  }
+  .text-body {
+    @apply text-sm leading-relaxed text-foreground;
+  }
+  .text-body-lg {
+    @apply text-base leading-relaxed text-foreground;
+  }
+  .text-label {
+    @apply text-sm font-medium leading-none;
+  }
+  .text-helper {
+    @apply text-xs leading-normal text-muted-foreground;
+  }
+  .text-caption {
+    @apply text-xs font-medium leading-none text-muted-foreground;
+  }
+  .text-overline {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground;
+  }
+  .text-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-primary;
+  }
+
+  /* Surface helpers */
+  .surface-card {
+    @apply rounded-xl border bg-card shadow-sm;
+  }
+}
+
+/* =============================================================================
+   Motion — respect reduced-motion preference
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media print {
-  .no-print { display: none !important; }
-  body { background: white; }
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
 }

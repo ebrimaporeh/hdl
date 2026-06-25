@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
+import { AlertCircle } from "lucide-react"
 import { Controller, FormProvider, useFormContext } from "react-hook-form";
 
 import { cn } from "@/utils/cn"
@@ -99,7 +100,7 @@ const FormDescription = React.forwardRef(({ className, ...props }, ref) => {
     <p
       ref={ref}
       id={formDescriptionId}
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-xs leading-normal text-muted-foreground", className)}
       {...props} />
   );
 })
@@ -117,8 +118,9 @@ const FormMessage = React.forwardRef(({ className, children, ...props }, ref) =>
     <p
       ref={ref}
       id={formMessageId}
-      className={cn("text-sm font-medium text-destructive", className)}
+      className={cn("flex items-center gap-1.5 text-xs font-medium text-destructive", className)}
       {...props}>
+      {error && <AlertCircle className="h-3.5 w-3.5 shrink-0" />}
       {body}
     </p>
   );
