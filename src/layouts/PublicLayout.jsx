@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from '@tanstack/react-router'
-import { Home, FlaskConical, Info, Phone, LogIn, MapPin, Mail, Clock, Shield } from 'lucide-react'
+import { Home, FlaskConical, Info, Phone, LogIn, MapPin, Mail, Clock, Shield, BookOpen } from 'lucide-react'
 import { BrandMark } from '@/components/custom/BrandMark'
 import { MobileBottomNav } from '@/components/custom/MobileBottomNav'
 import { Button } from '@/components/ui/button'
@@ -10,6 +10,7 @@ import { cn } from '@/utils/cn'
 const NAV_LINKS = [
   { to: ROUTES.HOME, label: 'Home' },
   { to: ROUTES.SERVICES, label: 'Services' },
+  { to: ROUTES.BLOG, label: 'Blog' },
   { to: ROUTES.ABOUT, label: 'About' },
   { to: ROUTES.CONTACT, label: 'Contact' },
 ]
@@ -17,6 +18,7 @@ const NAV_LINKS = [
 const MOBILE_NAV_ITEMS = [
   { to: ROUTES.HOME, label: 'Home', icon: Home, exact: true },
   { to: ROUTES.SERVICES, label: 'Services', icon: FlaskConical },
+  { to: ROUTES.BLOG, label: 'Blog', icon: BookOpen },
   { to: ROUTES.ABOUT, label: 'About', icon: Info },
   { to: ROUTES.CONTACT, label: 'Contact', icon: Phone },
   { to: ROUTES.LOGIN, label: 'Login', icon: LogIn },

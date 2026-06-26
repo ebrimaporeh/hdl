@@ -11,8 +11,11 @@ import { CustomerPortalLayout } from '@/layouts/CustomerPortalLayout'
 
 import { HomePage } from '@/pages/public/HomePage'
 import { ServicesPage } from '@/pages/public/ServicesPage'
+import { ServiceDetailPage } from '@/pages/public/ServiceDetailPage'
 import { AboutPage } from '@/pages/public/AboutPage'
 import { ContactPage } from '@/pages/public/ContactPage'
+import { BlogPage } from '@/pages/public/BlogPage'
+import { BlogDetailPage } from '@/pages/public/BlogDetailPage'
 import { PrivacyPolicyPage } from '@/pages/public/PrivacyPolicyPage'
 import { TermsOfServicePage } from '@/pages/public/TermsOfServicePage'
 import { LoginPage } from '@/pages/public/LoginPage'
@@ -29,6 +32,10 @@ import { WorklistPage } from '@/pages/admin/WorklistPage'
 import { ResultEntryPage } from '@/pages/admin/ResultEntryPage'
 import { ReportsPage } from '@/pages/admin/ReportsPage'
 import { ReportDetailPage } from '@/pages/admin/ReportDetailPage'
+import { AdminServicesPage } from '@/pages/admin/AdminServicesPage'
+import { ServiceFormPage } from '@/pages/admin/ServiceFormPage'
+import { AdminBlogPage } from '@/pages/admin/AdminBlogPage'
+import { BlogFormPage } from '@/pages/admin/BlogFormPage'
 
 import { ROUTES } from '@/constants'
 
@@ -65,8 +72,11 @@ const publicLayout = createRoute({ getParentRoute: () => rootRoute, id: 'public'
 
 const homeRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.HOME, component: HomePage })
 const servicesRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.SERVICES, component: ServicesPage })
+const serviceDetailRoute = createRoute({ getParentRoute: () => publicLayout, path: '/services/$serviceId', component: ServiceDetailPage })
 const aboutRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.ABOUT, component: AboutPage })
 const contactRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.CONTACT, component: ContactPage })
+const blogRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.BLOG, component: BlogPage })
+const blogDetailRoute = createRoute({ getParentRoute: () => publicLayout, path: '/blog/$slug', component: BlogDetailPage })
 const privacyRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.PRIVACY, component: PrivacyPolicyPage })
 const termsRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.TERMS, component: TermsOfServicePage })
 const loginRoute = createRoute({ getParentRoute: () => publicLayout, path: ROUTES.LOGIN, component: LoginPage })
@@ -117,11 +127,36 @@ const reportDetailRoute = createRoute({
   path: '/admin/reports/$reportId',
   component: ReportDetailPage,
 })
+const adminServicesRoute = createRoute({ getParentRoute: () => adminLayout, path: ROUTES.ADMIN_SERVICES, component: AdminServicesPage })
+const adminServiceNewRoute = createRoute({ getParentRoute: () => adminLayout, path: ROUTES.ADMIN_SERVICE_NEW, component: ServiceFormPage })
+const adminServiceEditRoute = createRoute({
+  getParentRoute: () => adminLayout,
+  path: '/admin/services/$serviceId/edit',
+  component: ServiceFormPage,
+})
+const adminBlogRoute = createRoute({ getParentRoute: () => adminLayout, path: ROUTES.ADMIN_BLOG, component: AdminBlogPage })
+const adminBlogNewRoute = createRoute({ getParentRoute: () => adminLayout, path: ROUTES.ADMIN_BLOG_NEW, component: BlogFormPage })
+const adminBlogEditRoute = createRoute({
+  getParentRoute: () => adminLayout,
+  path: '/admin/blog/$blogId/edit',
+  component: BlogFormPage,
+})
 
 // ─── Router ───────────────────────────────────────────────────────────────────
 
 const routeTree = rootRoute.addChildren([
-  publicLayout.addChildren([homeRoute, servicesRoute, aboutRoute, contactRoute, privacyRoute, termsRoute, loginRoute]),
+  publicLayout.addChildren([
+    homeRoute,
+    servicesRoute,
+    serviceDetailRoute,
+    aboutRoute,
+    contactRoute,
+    blogRoute,
+    blogDetailRoute,
+    privacyRoute,
+    termsRoute,
+    loginRoute,
+  ]),
   portalLayout.addChildren([portalReportsRoute, portalReportDetailRoute]),
   adminLayout.addChildren([
     dashboardRoute,
@@ -133,6 +168,12 @@ const routeTree = rootRoute.addChildren([
     testRequestDetailRoute,
     reportsRoute,
     reportDetailRoute,
+    adminServicesRoute,
+    adminServiceNewRoute,
+    adminServiceEditRoute,
+    adminBlogRoute,
+    adminBlogNewRoute,
+    adminBlogEditRoute,
   ]),
 ])
 

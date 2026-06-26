@@ -37,3 +37,10 @@ export const CATEGORY_IMAGES = {
   Toxicology: MEDIA.glovedPipette,
   Cytology: MEDIA.cells,
 }
+
+// Resolve the best image for a service: its own `image` id if set, otherwise
+// the category default, otherwise a generic lab scene. Returns { id, alt }.
+export function serviceImage(testType) {
+  if (testType?.image) return { id: testType.image, alt: testType.name ?? 'Laboratory test' }
+  return CATEGORY_IMAGES[testType?.category] ?? MEDIA.labRoom
+}

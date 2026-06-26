@@ -15,6 +15,10 @@ export const queryKeys = {
     all: () => ['testTypes'],
     detail: (id) => ['testTypes', 'detail', id],
   },
+  blog: {
+    all: () => ['blog'],
+    detail: (slug) => ['blog', 'detail', slug],
+  },
   orders: {
     all: () => ['orders'],
     detail: (id) => ['orders', 'detail', id],

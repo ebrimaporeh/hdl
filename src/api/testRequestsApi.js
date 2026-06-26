@@ -2,7 +2,6 @@ import { apiClient, API_ENABLED } from './client'
 import { simulateRequest } from '@/services/mockApi'
 import { mockDb } from '@/services/mockDb'
 import { enrichTestRequest } from '@/services/enrich'
-import { getTestTypeById } from '@/data/testTypes'
 import { TEST_REQUEST_STATUS, REPORT_STATUS } from '@/constants'
 
 function matchesFilters(testRequest, params) {
@@ -11,7 +10,7 @@ function matchesFilters(testRequest, params) {
   if (params.search) {
     const q = params.search.toLowerCase()
     const customer = mockDb.customers.get(testRequest.customerId)
-    const testType = getTestTypeById(testRequest.testTypeId)
+    const testType = mockDb.testTypes.get(testRequest.testTypeId)
     const haystack = [customer?.fullName, customer?.customerId, testType?.name].join(' ').toLowerCase()
     if (!haystack.includes(q)) return false
   }

@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from '@tanstack/react-router'
-import { LayoutDashboard, Users, ClipboardList, FileText, LogOut, Plus, ChevronsUpDown } from 'lucide-react'
+import { LayoutDashboard, Users, ClipboardList, FileText, FlaskConical, Newspaper, LogOut, Plus, ChevronsUpDown } from 'lucide-react'
 import { BrandMark } from '@/components/custom/BrandMark'
 import { MobileBottomNav } from '@/components/custom/MobileBottomNav'
 import { Button } from '@/components/ui/button'
@@ -22,6 +22,8 @@ const NAV_ITEMS = [
   { to: ROUTES.ADMIN_CUSTOMERS, label: 'Customers', icon: Users },
   { to: ROUTES.ADMIN_WORKLIST, label: 'Worklist', icon: ClipboardList },
   { to: ROUTES.ADMIN_REPORTS, label: 'Reports', icon: FileText },
+  { to: ROUTES.ADMIN_SERVICES, label: 'Services', icon: FlaskConical },
+  { to: ROUTES.ADMIN_BLOG, label: 'Blog', icon: Newspaper },
 ]
 
 export function AdminLayout() {

@@ -1,5 +1,4 @@
 import { mockDb } from '@/services/mockDb'
-import { getTestTypeById } from '@/data/testTypes'
 
 // Mirrors the joins a real backend would perform server-side for these
 // nested-resource endpoints (test request -> test type/customer/order, etc).
@@ -7,7 +6,7 @@ export function enrichTestRequest(testRequest) {
   if (!testRequest) return testRequest
   return {
     ...testRequest,
-    testType: getTestTypeById(testRequest.testTypeId),
+    testType: mockDb.testTypes.get(testRequest.testTypeId),
     customer: mockDb.customers.get(testRequest.customerId),
     order: mockDb.orders.get(testRequest.orderId),
     report: mockDb.reports.list().find((r) => r.testRequestId === testRequest.id) ?? null,

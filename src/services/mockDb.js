@@ -4,8 +4,10 @@ import { staff as seedStaff } from '@/data/staff'
 import { orders as seedOrders } from '@/data/orders'
 import { testRequests as seedTestRequests } from '@/data/testRequests'
 import { reports as seedReports } from '@/data/reports'
+import { testTypes as seedTestTypes } from '@/data/testTypes'
+import { blogPosts as seedBlogPosts } from '@/data/blog'
 
-const STORAGE_KEY = 'hdl_mock_db_v1'
+const STORAGE_KEY = 'hdl_mock_db_v2'
 
 function seedState() {
   return {
@@ -14,6 +16,8 @@ function seedState() {
     orders: seedOrders,
     testRequests: seedTestRequests,
     reports: seedReports,
+    testTypes: seedTestTypes,
+    blogPosts: seedBlogPosts,
     counters: {
       customer: seedCustomers.length,
       order: seedOrders.length,
@@ -78,6 +82,8 @@ export const mockDb = {
   orders: makeCollection('orders'),
   testRequests: makeCollection('testRequests'),
   reports: makeCollection('reports'),
+  testTypes: makeCollection('testTypes'),
+  blogPosts: makeCollection('blogPosts'),
   nextCustomerId: () => nextSequence('customer', 'HDL-C'),
   nextOrderNumber: () => nextSequence('order', 'HDL-O'),
   nextReportNumber: () => nextSequence('report', 'HDL-R'),

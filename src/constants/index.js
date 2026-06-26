@@ -2,8 +2,11 @@ export const ROUTES = {
   // Public
   HOME: '/',
   SERVICES: '/services',
+  serviceDetail: (id) => `/services/${id}`,
   ABOUT: '/about',
   CONTACT: '/contact',
+  BLOG: '/blog',
+  blogDetail: (slug) => `/blog/${slug}`,
   PRIVACY: '/privacy',
   TERMS: '/terms',
   LOGIN: '/login',
@@ -22,6 +25,13 @@ export const ROUTES = {
   adminTestRequestDetail: (id) => `/admin/test-requests/${id}`,
   ADMIN_REPORTS: '/admin/reports',
   adminReportDetail: (id) => `/admin/reports/${id}`,
+
+  ADMIN_SERVICES: '/admin/services',
+  ADMIN_SERVICE_NEW: '/admin/services/new',
+  adminServiceEdit: (id) => `/admin/services/${id}/edit`,
+  ADMIN_BLOG: '/admin/blog',
+  ADMIN_BLOG_NEW: '/admin/blog/new',
+  adminBlogEdit: (id) => `/admin/blog/${id}/edit`,
 }
 
 
