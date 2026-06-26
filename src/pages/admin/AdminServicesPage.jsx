@@ -13,7 +13,6 @@ const COLUMNS = [
   { key: 'category', header: 'Category', render: (s) => <Badge variant="muted">{s.category}</Badge> },
   { key: 'sampleType', header: 'Sample' },
   { key: 'turnaround', header: 'Turnaround', render: (s) => s.turnaround ?? '—' },
-  { key: 'price', header: 'Price', render: (s) => s.price ?? '—' },
 ]
 
 export function AdminServicesPage() {

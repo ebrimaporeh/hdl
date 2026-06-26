@@ -109,8 +109,8 @@ export function PublicLayout() {
               </ul>
             </div>
 
-            {/* Contact - spans full width on mobile */}
-            <div className="col-span-2 md:col-span-1">
+            {/* Contact */}
+            <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Contact Us
               </p>

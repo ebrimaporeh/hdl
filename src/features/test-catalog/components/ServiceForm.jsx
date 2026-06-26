@@ -21,7 +21,6 @@ function toFormState(testType) {
     method: testType?.method ?? '',
     description: testType?.description ?? '',
     overview: testType?.overview ?? '',
-    price: testType?.price ?? '',
     turnaround: testType?.turnaround ?? '',
     fasting: Boolean(testType?.fasting),
     image: testType?.image ?? '',
@@ -51,7 +50,6 @@ export function ServiceForm({ testType, onSubmit, isSubmitting, submitLabel = 'S
       method: form.method.trim() || null,
       description: form.description.trim(),
       overview: form.overview.trim(),
-      price: form.price.trim(),
       turnaround: form.turnaround.trim(),
       fasting: form.fasting,
       image: form.image.trim(),
@@ -110,15 +108,10 @@ export function ServiceForm({ testType, onSubmit, isSubmitting, submitLabel = 'S
 
       {/* Logistics */}
       <fieldset className="space-y-5">
-        <legend className="text-sm font-semibold tracking-tight text-foreground">Pricing & logistics</legend>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Price" htmlFor="svc-price">
-            <Input id="svc-price" value={form.price} onChange={(e) => handleChange('price', e.target.value)} className="h-12" placeholder="e.g. GMD 1,800" />
-          </Field>
-          <Field label="Turnaround" htmlFor="svc-turnaround">
-            <Input id="svc-turnaround" value={form.turnaround} onChange={(e) => handleChange('turnaround', e.target.value)} className="h-12" placeholder="e.g. Same day" />
-          </Field>
-        </div>
+        <legend className="text-sm font-semibold tracking-tight text-foreground">Logistics</legend>
+        <Field label="Turnaround" htmlFor="svc-turnaround">
+          <Input id="svc-turnaround" value={form.turnaround} onChange={(e) => handleChange('turnaround', e.target.value)} className="h-12" placeholder="e.g. Same day" />
+        </Field>
         <Field label="Image ID" htmlFor="svc-image" hint="Unsplash photo ID (e.g. 1532187863486-abf9dbad1b69). Leave blank to use the category default.">
           <Input id="svc-image" value={form.image} onChange={(e) => handleChange('image', e.target.value)} className="h-12" />
         </Field>

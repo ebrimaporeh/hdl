@@ -7,7 +7,7 @@ import { reports as seedReports } from '@/data/reports'
 import { testTypes as seedTestTypes } from '@/data/testTypes'
 import { blogPosts as seedBlogPosts } from '@/data/blog'
 
-const STORAGE_KEY = 'hdl_mock_db_v2'
+const STORAGE_KEY = 'hdl_mock_db_v3'
 
 function seedState() {
   return {

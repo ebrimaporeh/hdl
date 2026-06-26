@@ -3,7 +3,6 @@ import {
   ArrowRight,
   ArrowLeft,
   Clock,
-  Tag,
   TestTube,
   Utensils,
   ClipboardList,
@@ -73,7 +72,6 @@ export function ServiceDetailPage() {
   const facts = [
     { icon: TestTube, label: 'Sample', value: testType.sampleType },
     { icon: Clock, label: 'Turnaround', value: testType.turnaround },
-    { icon: Tag, label: 'Price', value: testType.price },
     { icon: Utensils, label: 'Fasting', value: testType.fasting ? 'Required' : 'Not required' },
   ].filter((f) => f.value)
 

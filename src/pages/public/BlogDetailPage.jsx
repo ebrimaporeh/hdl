@@ -9,32 +9,18 @@ import { img } from '@/features/marketing/constants/media'
 import { formatDate } from '@/utils/formatters'
 import { ROUTES } from '@/constants'
 
-function renderBlock(block, i) {
-  if (block.type === 'heading') {
-    return (
-      <h2 key={i} className="mt-10 text-2xl font-bold tracking-tight">
-        {block.text}
-      </h2>
-    )
-  }
-  if (block.type === 'list') {
-    return (
-      <ul key={i} className="my-5 space-y-2">
-        {block.items.map((item) => (
-          <li key={item} className="flex items-start gap-2.5 leading-relaxed text-muted-foreground">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    )
-  }
-  return (
-    <p key={i} className="mt-5 leading-relaxed text-muted-foreground">
-      {block.text}
-    </p>
-  )
-}
+// Tailwind arbitrary variants style the HTML emitted by the rich text editor.
+const PROSE = [
+  'mt-6 max-w-none text-muted-foreground',
+  '[&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground',
+  '[&_h3]:mt-8 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:text-foreground',
+  '[&_p]:mt-5 [&_p]:leading-relaxed',
+  '[&_ul]:my-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5',
+  '[&_ol]:my-5 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5',
+  '[&_li]:leading-relaxed [&_li]:pl-1 [&_li]:marker:text-primary',
+  '[&_strong]:font-semibold [&_strong]:text-foreground',
+  '[&_a]:font-medium [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2',
+].join(' ')
 
 export function BlogDetailPage() {
   const { slug } = useParams({ strict: false })
@@ -118,7 +104,9 @@ export function BlogDetailPage() {
         {post.excerpt && (
           <p className="text-lg font-medium leading-relaxed text-foreground">{post.excerpt}</p>
         )}
-        {(post.body ?? []).map(renderBlock)}
+        {typeof post.body === 'string' && (
+          <div className={PROSE} dangerouslySetInnerHTML={{ __html: post.body }} />
+        )}
       </div>
 
       {/* CTA */}

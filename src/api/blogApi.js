@@ -38,7 +38,7 @@ export const blogApi = {
           mockDb.blogPosts.insert({
             slug: data.slug?.trim() || slugify(data.title),
             publishedAt: data.publishedAt || new Date().toISOString().slice(0, 10),
-            body: data.body ?? [],
+            body: data.body ?? '',
             ...data,
           }),
         ),

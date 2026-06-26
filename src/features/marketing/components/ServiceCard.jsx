@@ -50,9 +50,7 @@ export function ServiceCard({ testType }) {
         </CardHeader>
 
         <CardContent className="mt-auto flex items-center justify-between gap-3">
-          <p className="text-xs font-medium text-muted-foreground">
-            {testType.price ? testType.price : `Sample: ${testType.sampleType}`}
-          </p>
+          <p className="text-xs font-medium text-muted-foreground">Sample: {testType.sampleType}</p>
           <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary">
             View details
             <ArrowRight className="h-4 w-4 shrink-0 transition-all group-hover:translate-x-0.5" />

@@ -35,7 +35,7 @@ export function ProcessTimeline() {
           </p>
         </div>
 
-        <ol className="relative mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="relative mt-12 grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-8 lg:grid-cols-4">
           {/* connecting line (desktop) */}
           <div
             aria-hidden

@@ -17,7 +17,6 @@ export const testTypes = [
     image: '1532187863486-abf9dbad1b69',
     overview:
       'A comprehensive blood chemistry profile that measures glucose control, cholesterol and fats, kidney function and liver health from a single draw — giving you and your doctor a broad snapshot of your metabolic health.',
-    price: 'GMD 1,800',
     turnaround: 'Same day',
     fasting: true,
     preparation: [
@@ -86,7 +85,6 @@ export const testTypes = [
     image: '1612277795421-9bc7706a4a34',
     overview:
       'A full blood count measures the cells that make up your blood — red cells, white cells and platelets — to screen for anaemia, infection, clotting problems and many other conditions.',
-    price: 'GMD 800',
     turnaround: 'Same day (1–2 hours)',
     fasting: false,
     preparation: [
@@ -138,7 +136,6 @@ export const testTypes = [
     image: '1576086213369-97a306d36557',
     overview:
       'Identifies your haemoglobin type to detect sickle cell trait or disease and other haemoglobin variants — important for your own health and for family planning.',
-    price: 'GMD 1,200',
     turnaround: 'Same day',
     fasting: false,
     preparation: [
@@ -183,7 +180,6 @@ export const testTypes = [
     image: '1579165466949-3180a3d056d5',
     overview:
       'A rapid urine screen for ten common drugs of abuse, suitable for clinical, workplace and pre-employment screening, with confidential results.',
-    price: 'GMD 1,500',
     turnaround: 'Same day (about 30 minutes)',
     fasting: false,
     preparation: [
@@ -227,7 +223,6 @@ export const testTypes = [
     image: '1581093588401-fbb62a02f120',
     overview:
       'A modern blood test for tuberculosis infection that, unlike the skin test, is not affected by prior BCG vaccination — giving a clear, objective result.',
-    price: 'GMD 3,500',
     turnaround: '2–3 working days',
     fasting: false,
     preparation: [
@@ -280,7 +275,6 @@ export const testTypes = [
     image: '1614308457932-e16d85c5d053',
     overview:
       'A cervical screening test that examines cells from the cervix to detect early changes long before they could develop into cancer, reported using the international Bethesda system.',
-    price: 'GMD 2,500',
     turnaround: '3–5 working days',
     fasting: false,
     preparation: [

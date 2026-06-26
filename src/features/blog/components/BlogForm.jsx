@@ -1,40 +1,21 @@
 import { useState } from 'react'
+import Editor, {
+  BtnBold,
+  BtnBulletList,
+  BtnClearFormatting,
+  BtnItalic,
+  BtnLink,
+  BtnNumberedList,
+  BtnRedo,
+  BtnUndo,
+  HtmlButton,
+  Separator,
+  Toolbar,
+} from 'react-simple-wysiwyg'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
-
-// ── Body <-> text helpers ──────────────────────────────────────────────────
-// The editor uses a tiny, friendly syntax so admins don't need to know JSON:
-//   "## Heading"      → a heading
-//   "- item" lines    → a bulleted list
-//   anything else      → a paragraph (blank line separates blocks)
-export function blocksToText(blocks = []) {
-  return blocks
-    .map((block) => {
-      if (block.type === 'heading') return `## ${block.text}`
-      if (block.type === 'list') return block.items.map((i) => `- ${i}`).join('\n')
-      return block.text
-    })
-    .join('\n\n')
-}
-
-export function textToBlocks(text = '') {
-  return text
-    .split(/\n\s*\n/)
-    .map((chunk) => chunk.trim())
-    .filter(Boolean)
-    .map((chunk) => {
-      const lines = chunk.split('\n').map((l) => l.trim()).filter(Boolean)
-      if (lines.every((l) => l.startsWith('- '))) {
-        return { type: 'list', items: lines.map((l) => l.replace(/^-\s+/, '')) }
-      }
-      if (lines.length === 1 && lines[0].startsWith('## ')) {
-        return { type: 'heading', text: lines[0].replace(/^##\s+/, '') }
-      }
-      return { type: 'paragraph', text: lines.join(' ') }
-    })
-}
 
 function toFormState(post) {
   return {
@@ -46,7 +27,7 @@ function toFormState(post) {
     readTime: post?.readTime ?? '',
     publishedAt: post?.publishedAt ?? new Date().toISOString().slice(0, 10),
     excerpt: post?.excerpt ?? '',
-    body: blocksToText(post?.body),
+    body: post?.body ?? '',
   }
 }
 
@@ -68,7 +49,7 @@ export function BlogForm({ post, onSubmit, isSubmitting, submitLabel = 'Save pos
       readTime: form.readTime.trim(),
       publishedAt: form.publishedAt,
       excerpt: form.excerpt.trim(),
-      body: textToBlocks(form.body),
+      body: form.body,
     })
   }
 
@@ -107,12 +88,30 @@ export function BlogForm({ post, onSubmit, isSubmitting, submitLabel = 'Save pos
         <Textarea id="post-excerpt" required rows={2} value={form.excerpt} onChange={(e) => handleChange('excerpt', e.target.value)} />
       </Field>
 
-      <Field
-        label="Body"
-        htmlFor="post-body"
-        hint="Use “## ” for a heading and “- ” for bullet points. Separate paragraphs with a blank line."
-      >
-        <Textarea id="post-body" required rows={14} value={form.body} onChange={(e) => handleChange('body', e.target.value)} className="font-mono text-sm" />
+      <Field label="Body" hint="Format text with the toolbar — headings, bold, lists and links.">
+        <div className="rt-editor rounded-lg border border-input bg-surface focus-within:ring-2 focus-within:ring-ring/40">
+          <Editor
+            value={form.body}
+            onChange={(e) => handleChange('body', e.target.value)}
+            containerProps={{ style: { border: 'none', borderRadius: '0.5rem' } }}
+          >
+            <Toolbar>
+              <BtnUndo />
+              <BtnRedo />
+              <Separator />
+              <BtnBold />
+              <BtnItalic />
+              <Separator />
+              <BtnNumberedList />
+              <BtnBulletList />
+              <Separator />
+              <BtnLink />
+              <BtnClearFormatting />
+              <Separator />
+              <HtmlButton />
+            </Toolbar>
+          </Editor>
+        </div>
       </Field>
 
       <Button type="submit" size="lg" className="h-12 w-full" disabled={isSubmitting || !form.category}>
