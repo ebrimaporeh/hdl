@@ -47,14 +47,14 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" className="h-12">
               <Link to={ROUTES.SERVICES}>
-                Explore our services
+                 Our services
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="h-12">
               <Link to={ROUTES.HOME} hash="send-reports">
                 <FileSearch className="h-4 w-4" />
-                Get My Reports
+                My Reports
               </Link>
             </Button>
           </div>
