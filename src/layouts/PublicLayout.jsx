@@ -77,17 +77,14 @@ export function PublicLayout() {
       <footer className="no-print border-t bg-gradient-to-b from-card to-background">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           {/* Main footer grid - 2 columns on mobile, 4 on desktop */}
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:gap-10">
+          <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 lg:gap-10">
             {/* Brand - spans full width on mobile */}
             <div className="col-span-2 md:col-span-1">
               <BrandMark />
               <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
                 {branding.tagline}
               </p>
-              <div className="mt-4 flex items-center gap-1 text-xs text-muted-foreground">
-                <Shield className="h-3.5 w-3.5 text-primary" />
-                <span>Trusted since 2024</span>
-              </div>
+              
             </div>
 
             {/* Quick Links */}
@@ -110,7 +107,7 @@ export function PublicLayout() {
             </div>
 
             {/* Contact */}
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Contact Us
               </p>
@@ -125,7 +122,7 @@ export function PublicLayout() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span className="text-xs">{branding.email}</span>
+                  <span className="break-all text-xs">{branding.email}</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
