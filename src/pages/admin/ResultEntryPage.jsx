@@ -85,7 +85,7 @@ export function ResultEntryPage() {
         <Button
           variant="outline"
           size="lg"
-          className="h-12 flex-1"
+          className="flex-1 px-6 py-3"
           disabled={saveProgress.isPending}
           onClick={() => saveProgress.mutate({ id, values })}
         >
@@ -93,7 +93,7 @@ export function ResultEntryPage() {
         </Button>
         <Button
           size="lg"
-          className="h-12 flex-1"
+          className="flex-1 px-6 py-3"
           disabled={markComplete.isPending}
           onClick={() =>
             markComplete.mutate(
